@@ -1,0 +1,65 @@
+/* src/Chatbot.css */
+.customQY-chatbot {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.customQY-chatbot.closed {
+    transform: translateY(100%);
+}
+
+.customQY-chatbot.open {
+    transform: translateY(0);
+}
+
+.customQY-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+.customQY-messages {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.customQY-message {
+    margin: 5px 0;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    color: black;
+}
+
+.customQY-options {
+    margin-top: 10px;
+}
+
+.customQY-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.customQY-button:hover {
+    background-color: #0056b3;
+}

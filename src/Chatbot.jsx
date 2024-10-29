@@ -52,14 +52,15 @@ const Chatbot = () => {
             const nextQuestion = nextQuestions[0];
             if (nextQuestion.response_type === 'redirect') {
                 const redirectUrl = nextQuestion.response_data;
-                if (redirectUrl) {
+                if (typeof redirectUrl === 'string' && redirectUrl.startsWith('http')) {
                     window.open(redirectUrl, "_blank");
+                    return; // Exit early to prevent any new messages in the chatbot
                 }
             } 
 
             const nextMessages = nextQuestions.map((nextQuestion) => ({
                 text: nextQuestion.question,
-                options: nextQuestion.response_data || [],
+                options: Array.isArray(nextQuestion.response_data) ? nextQuestion.response_data : [],
                 id: nextQuestion.id,
                 response_type: nextQuestion.response_type,
             }));

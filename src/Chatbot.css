@@ -63,7 +63,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    
 }
 
 .customQY-header-static {
@@ -86,6 +86,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+   
+    width: -webkit-fill-available;
 }
 
 .customQY-chatbot {
@@ -111,25 +113,48 @@
     font-family: var(--customQY-main-font);
     font-size: 0.9em;
     color: #555;
-    margin-bottom: 10px;
-    display: inline-block;
+    margin-top: 10px;
+    display: flex;
+    justify-content:left ;
+    gap: 4px; /* Space between dots */
     position: relative;
-    padding-right: 10px;
+    animation: fadeIn 0.3s ease-in-out; /* Add fade-in for typing indicator */
 }
 
-.customQY-typing::after {
-    content: '...';
-    display: inline-block;
-    animation: dots 1.5s steps(5, end) infinite;
-    size: 1em;
+.customQY-typing .dot {
+    width: 6px;
+    height: 6px;
+    background-color: #555;
+    border-radius: 50%;
+    animation: wave 1s ease-in-out infinite;
 }
 
-@keyframes dots {
-    0% { content: ''; }
-    33% { content: '.'; }
-    66% { content: '..'; }
-    100% { content: '...'; }
+.customQY-typing .dot:nth-child(2) {
+    animation-delay: 0.2s;
 }
+
+.customQY-typing .dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Wave animation keyframes */
+@keyframes wave {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    30% {
+        transform: translateY(-6px);
+        opacity: 0.5;
+    }
+}
+
+/* Fade in effect */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 
 @keyframes pulse-circle {
     0% {
@@ -156,12 +181,15 @@
     animation: pulse-circle 1.5s ease-out infinite;
    
 }
+/* Message Container Positioned Below Header */
 .customQY-messages {
     display: flex;
     flex-direction: column;
-    max-height: 100%; 
+    max-height: calc(100% - 70px); /* Subtract header height */
     overflow-y: auto;
-    vertical-align: baseline;
+    padding: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--customQY-primary-color) white;
 }
 
 .customQY-message {
@@ -170,9 +198,18 @@
     border-radius: 5px;
     color: black;
 }
+.customQY-message p{
+    font-size: 24px;
+    font-family: var(--customQY-main-font);
+    font-weight: 600;
+    color: #666;
+}
 
 .customQY-options {
-    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+   
 }
 
 .customQY-button {
@@ -184,6 +221,8 @@
     margin: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 18px;
+    font-family: var(--customQY-main-font);
 }
 
 .customQY-button:hover {
@@ -203,3 +242,11 @@
 .close-icon:hover:before {
     color: #333;   /* Hover color change */
 }
+.customQY-messages {
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: var(--customQY-primary-color) white; 
+}
+
+/* .customQY-chatbot.open::-webkit-scrollbar {
+    display: none; 
+} */
